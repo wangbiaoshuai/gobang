@@ -7,26 +7,28 @@
 
 struct Position
 {
-    int x; 
-    int y;
+	int x;
+	int y;
 };
 
 class Game
 {
 public:
-    Game();
-    ~Game();
-    int Init();
-    int Run();
+	Game();
+	~Game();
+	int Init();
+	int Run();
 
 private:
-    void PrintChessBoard();
-    int DownChessPiece(const char piece, const Position& pos);
-    int JudgeResult(const Position& pos);
+	void InitChessBoard();
+	void PrintChessBoard();
+	int DownChessPiece(const char piece, const Position& pos);
+	int JudgeResult(const Position& pos);
 
 private:
-    std::string player1_;
-    std::string player2_;
-    char chess_board_[BOARD_SIZE][BOARD_SIZE];
+	std::string player1_;
+	std::string player2_;
+	char chess_board_[BOARD_SIZE][BOARD_SIZE];
 };
 #endif // _GAME_H_
+
