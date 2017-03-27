@@ -16,6 +16,7 @@ Game::Game() :
 
 Game::~Game()
 {
+   cout<<"just for test"<<endl;OB
 }
 void Game::InitChessBoard()
 {
