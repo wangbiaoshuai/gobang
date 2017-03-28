@@ -12,7 +12,7 @@ player2_("B")
 {
     for(register int i = 0; i < BOARD_SIZE; i++)
     {
-        memset(chess_board_[i], 0, sizeof(char) * BOARD_SIZE);
+        memset(chess_board_[i], '*', sizeof(char) * BOARD_SIZE);
     }
 }
 
@@ -22,29 +22,22 @@ Game::~Game()
 
 void Game::PrintChessBoard()
 {
+    system("clear");
     for(register int i = 0; i < BOARD_SIZE; i++)
     {
         for(register int j = 0; j < BOARD_SIZE; j++)
         {
             if(i == 0)
             {
-                printf(" %2d", j);
+                printf("%3d", j);
             }
             else if(j == 0)
             {
-                printf(" %2d", i);
+                printf("%3d", i);
             }
-            else if(chess_board_[i][j] == 0)
+            else
             {
-                printf("  *");
-            }
-            else if(chess_board_[i][j] == 1)
-            {
-                printf("  O");
-            }
-            else if(chess_board_[i][j] == 2)
-            {
-                printf("  X");
+                printf("%3c", chess_board_[i][j]);
             }
         }
         printf("\n");
@@ -56,23 +49,18 @@ int Game::DownChessPiece(const char piece, const Position& pos)
     if(!IsLegalPos(pos))
         return -1;
 
-    if(chess_board_[pos.x][pos.y] != 0)
+    if(chess_board_[pos.x][pos.y] != '*')
     {
         return -1;
     }
 
-    if(piece == 'O')
-    {
-        chess_board_[pos.x][pos.y] = 1;
-    }
-    else if(piece == 'X')
-    {
-        chess_board_[pos.x][pos.y] = 2;
-    }
-    else
+    if(piece != 'O' && piece != 'X')
     {
         return -1;
     }
+
+    chess_board_[pos.x][pos.y] = piece;
+
     return 0;
 }
 
@@ -208,7 +196,6 @@ int Game::Run()
 
     do
     {
-        system("clear");
         Position pos;
         PrintChessBoard();
         if(count % 2 == 1)
@@ -232,7 +219,6 @@ int Game::Run()
 
         if(JudgeResult(pos) == 0)
         {
-            system("clear");
             PrintChessBoard();
             cout<<"player "<<player<<" win!"<<endl;
             break;
