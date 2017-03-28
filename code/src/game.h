@@ -23,6 +23,8 @@ private:
     void PrintChessBoard();
     int DownChessPiece(const char piece, const Position& pos);
     int JudgeResult(const Position& pos);
+    bool IsLegalPos(const Position& pos);
+    int JudgeDirectionResult(int direc, const Position& pos);
 
 private:
     std::string player1_;
